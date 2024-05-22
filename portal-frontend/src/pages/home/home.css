@@ -1,0 +1,203 @@
+.login-container {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    gap: 10%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 90px;
+}
+
+.intro-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+    .intro-box h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #2b78e4;
+        margin-bottom: 20px;
+    }
+    .intro-box p {
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .intro-box img {
+        width: 200px;
+        height: auto;
+    }
+    /* Login Box  */
+.login-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.contractor {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+   .contractor h1 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #2b78e4;
+    }
+    .contractor small {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #333;
+    }
+
+.worker {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+    .worker h1 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #2b78e4;
+    }
+    .worker small {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #333;
+    }
+
+
+
+    /* login form */
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+    }
+    form > button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 0;
+        border-radius: 5px;
+        background: #2b78e4;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        outline: none;
+        transition: all .3s ease;
+        transform: translateY(4px);
+    }
+   form > button:hover {
+        transform: translateY(0);
+    }
+    form > small {
+        font-size: 0.7rem;
+        color: #ff0000;
+        position: relative;
+        top: -10px;
+    }
+    .steps-btn {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 0;
+        border-radius: 5px;
+        color: #fff;  
+        display: flex ;
+        justify-content: space-between; 
+    }
+    .steps-btn > button {
+        width: 100px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 0;
+        border-radius: 5px;
+        background-color: #2b78e4;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        outline: none;
+        transition: all .3s ease;
+        transform: translateY(4px);
+    }
+    .steps-btn > button:hover {
+        transform: translateY(0);
+    }
+    fieldset {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
+    fieldset > button {
+        width: 30%;
+        background: #fff;
+        color: #2b78e4;
+        padding: 10px;
+        border: 1px solid #2b78e4;
+        transition: all .3s ease;
+        transform: translateY(4px);
+    }
+    fieldset > button:hover {
+        transform: translateY(0);
+    }
+    .selected {
+        background: #2b78e4;
+        color: #fff;
+    }
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: space-around
+    }
+
+
+/*  media q*/
+@media screen and (max-width: 1024px) {
+    .container {
+        width: var(--container-width-md);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: var(--container-width-sm);
+    }
+    .login-container {
+        grid-template-columns: 100%;
+        gap: 0;
+    }
+    .login-box {
+        width: 100%;
+    }
+    .worker small, .contractor small{
+        font-size: .8rem;
+    }
+
+}
