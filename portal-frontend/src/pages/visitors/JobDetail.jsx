@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./jobboard.css";
 
 const JobDetail = () => {
@@ -55,9 +55,7 @@ const JobDetail = () => {
     }
   };
 
-  const handleLoginRedirect = () => {
-    navigate("/worker-login");
-  };
+ 
 
   if (!job) return <div>Loading...</div>;
 
@@ -84,24 +82,13 @@ const JobDetail = () => {
           ))}
         </ul>
       </div>
-      {!user ? (
-        <div className="apply-button">
-          <button type="button" onClick={applyToJob}>
-            Apply
-          </button>
-        </div>
-      ) : (
-        <div className="apply-button">
-          <button type="button" onClick={handleLoginRedirect}>
-            Login to Apply
-          </button>
-        </div>
-      )}
-      {/* <div className="apply-button">
-        <button type="button" onClick={() => applyToJob(workerId)}>
+      
+      
+      <div className="apply-button">
+        <button type="button" onClick={applyToJob}>
           Apply
-        </button>
-      </div> */}
+        </button>    
+      </div>
     </div>
   );
 };

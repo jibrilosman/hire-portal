@@ -27,9 +27,9 @@ const WorkerLogin = () => {
       const { token } = data;
       localStorage.setItem("token", token);
       navigate(`/job-dashboard/${data.id}`);
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
+    } catch (errors) {
+        console.log(errors);
+        setErrors(errors.response.data);
     }
   };
 

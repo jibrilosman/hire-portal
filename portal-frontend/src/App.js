@@ -17,6 +17,7 @@ import Upcoming from "./pages/worker/Upcoming";
 import Completed from "./pages/worker/Completed";
 import JobDetail from "./pages/worker/JobDetail";
 import WorkerDashboard from "./pages/worker/WorkerDashboard";
+import VJobDashboard from "./pages/visitors/JobDashboard";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 axios.defaults.withCredentials = true;
@@ -47,7 +48,7 @@ function App() {
         </Route>
           {/* <Route path="worker/:id" element={<WorkerDashboard />} /> */}
 
-          <Route path="visit-dashboard" element={<JobDashboard />} >
+          <Route path="visit-dashboard" element={<VJobDashboard />} >
           <Route index element={<AllJobs />} />
           <Route path="ongoing" element={<Ongoing />} />
           <Route path="upcoming" element={<Upcoming />} />

@@ -21,8 +21,45 @@ const Register = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+   
+
+  const validateForm = () => {
+    if (currentStep === 1) {
+        if (!formData.name) {
+            setErrors({ name: "Name is required" });
+            return false;
+        }
+        if (!formData.email ) {
+            setErrors({ email: "Email is required" });
+            return false;
+        }
+        if (!formData.password) {
+            setErrors({ password: "Password is required" });
+            return false;
+        }
+        
+
+    } else if (currentStep === 2) {
+        if (!formData.companyName) {
+            setErrors({ companyName: "Company Name is required" });
+            return false;
+        }
+        if (!formData.companyPhone) {
+            setErrors({ companyPhone: "Company Phone is required" });
+            return false;
+        }
+        if (!formData.companyAddress) {
+            setErrors({ companyAddress: "Company Address is required" });
+            return false;
+        }
+    }
+    return true;
+    };
+
 
   const nextStep = () => {
+    const isValid = validateForm();
+    if (!isValid) return;
     setCurrentStep(currentStep + 1);
   };
 
@@ -52,8 +89,9 @@ const Register = () => {
       await axios.post("contractors/register", formData);
       alert("Account created successfully");
       navigate("/login");
-    } catch (error) {
-      setErrors(error.response.data);
+    } catch (errors) {
+        console.log(errors);
+        setErrors(errors.response.data);
     }
   };
 

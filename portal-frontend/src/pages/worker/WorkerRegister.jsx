@@ -19,13 +19,41 @@ const WorkerRegister = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    if (currentStep === 1) {
+        if (!formData.name) {
+            setErrors({ name: "Name is required" });
+            return false;
+        }
+        if (!formData.email ) {
+            setErrors({ email: "Email is required" });
+            return false;
+        }
+        if (!formData.password) {
+            setErrors({ password: "Password is required" });
+            return false;
+        }
+
+    } else if (currentStep === 2) {
+        if (!formData.skills) {
+            setErrors({ skills: "Skills is required" });
+            return false;
+        }
+    }
+    return true;
+    };
+
+
+
   const nextStep = () => {
+    if (!validateForm()) return;
     setCurrentStep(currentStep + 1);
   };
 
   const prevStep = () => {
     setCurrentStep(currentStep - 1);
   };
+
 
   const handleSkillClick = (skill) => {
     // Check if the skill is already selected
@@ -47,8 +75,9 @@ const WorkerRegister = () => {
       await axios.post("workers/register", formData);
       alert("Account created successfully");
       navigate("/login");
-    } catch (error) {
-      setErrors(error.response.data);
+    } catch (errors) {
+        console.log(errors);
+      setErrors(errors.response.data);
     }
   };
 
@@ -76,6 +105,7 @@ const WorkerRegister = () => {
                 placeholder="Name"
                 onChange={handleChange}
               />
+                {errors.name && <small className="error">{errors.name}</small>}
               <input
                 type="email"
                 name="email"
@@ -83,6 +113,7 @@ const WorkerRegister = () => {
                 placeholder="Email"
                 onChange={handleChange}
               />
+                {errors.email && <small className="error">{errors.email}</small>}
               <input
                 type="password"
                 name="password"
@@ -90,6 +121,7 @@ const WorkerRegister = () => {
                 placeholder="Password"
                 onChange={handleChange}
               />
+              {errors.password && <small className="error">{errors.password}</small>}
               <button type="button" onClick={nextStep}>
                 Next
               </button>

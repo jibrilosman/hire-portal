@@ -139,6 +139,15 @@ router.delete('/jobs/:jobId', async (req, res) => {
 //     }
 // });
 
+// get all contractors
+router.get('/', async (req, res) => {
+    try {
+        const contractors = await Contractor.find();
+        res.json(contractors);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 
 router.get('/profile',  (req, res) => {

@@ -30,9 +30,9 @@ const Login = () => {
       const { token } = data;
       localStorage.setItem("token", token);
       navigate(`/dashboard/${data.id}`);
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
+    } catch (errors) {
+      console.error(errors);
+      setErrors(errors.response.data);
     }
   };
 
