@@ -19,6 +19,10 @@ const workerSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Job',
     }],
+    role: {
+        type: String,
+        default: 'worker',
+    }
 });
 
 const Worker = mongoose.model('Worker', workerSchema);

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
+const WorkerLogin = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [data, setData] = useState({
@@ -23,13 +23,10 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = data;
     try {
-      const { data } = await axios.post("contractors/login", {
-        email,
-        password,
-      });
+      const { data } = await axios.post("workers/login", { email, password });
       const { token } = data;
       localStorage.setItem("token", token);
-      navigate(`/dashboard/${data.id}`);
+      navigate(`/job-dashboard/${data.id}`);
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -74,4 +71,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default WorkerLogin;

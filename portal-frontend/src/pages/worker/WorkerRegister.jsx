@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/HireKey.jpg";
 import axios from "axios";
 
-const Register = () => {
+const WorkerRegister = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
@@ -11,10 +11,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    companyName: "",
-    companyAddress: "",
-    companyPhone: "",
-    companyInterests: "",
+    skills: "",
   });
 
   const handleChange = async (e) => {
@@ -30,26 +27,24 @@ const Register = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleInterestClick = (interest) => {
-    // Check if the interest is already selected
-    const isInterestSelected = formData.companyInterests.includes(interest);
-    if (isInterestSelected) {
-      // Remove the interest from
-      const updatedInterests = formData.companyInterests.filter(
-        (i) => i !== interest
-      );
-      setFormData({ ...formData, companyInterests: updatedInterests });
+  const handleSkillClick = (skill) => {
+    // Check if the skill is already selected
+    const isSkillSelected = formData.skills.includes(skill);
+    if (isSkillSelected) {
+      // Remove the skill from
+      const updatedSkills = formData.skills.filter((s) => s !== skill);
+      setFormData({ ...formData, skills: updatedSkills });
     } else {
-      // Add the interest to the list
-      const updatedInterests = [...formData.companyInterests, interest];
-      setFormData({ ...formData, companyInterests: updatedInterests });
+      // Add the skill to the list
+      const updatedSkills = [...formData.skills, skill];
+      setFormData({ ...formData, skills: updatedSkills });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("contractors/register", formData);
+      await axios.post("workers/register", formData);
       alert("Account created successfully");
       navigate("/login");
     } catch (error) {
@@ -73,7 +68,7 @@ const Register = () => {
 
           {currentStep === 1 && (
             <>
-              <span>(1/3)</span>
+              <span>(1/2)</span>
               <input
                 type="text"
                 name="name"
@@ -81,7 +76,6 @@ const Register = () => {
                 placeholder="Name"
                 onChange={handleChange}
               />
-              {errors.name && <small className="error">{errors.name}</small>}
               <input
                 type="email"
                 name="email"
@@ -89,7 +83,6 @@ const Register = () => {
                 placeholder="Email"
                 onChange={handleChange}
               />
-              {errors.email && <small className="error">{errors.email}</small>}
               <input
                 type="password"
                 name="password"
@@ -97,9 +90,6 @@ const Register = () => {
                 placeholder="Password"
                 onChange={handleChange}
               />
-              {errors.password && (
-                <small className="error">{errors.password}</small>
-              )}
               <button type="button" onClick={nextStep}>
                 Next
               </button>
@@ -108,73 +98,32 @@ const Register = () => {
 
           {currentStep === 2 && (
             <>
-              <span>(2/3)</span>
-              <input
-                type="text"
-                name="companyName"
-                value={formData.companyName}
-                placeholder="Company Name"
-                onChange={handleChange}
-              />
-              <input
-                type="tel"
-                name="companyPhone"
-                value={formData.companyPhone}
-                placeholder="Company Phone"
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="companyAddress"
-                value={formData.companyAddress}
-                placeholder="Company Location"
-                onChange={handleChange}
-              />
-              <div className="steps-btn">
-                <button type="button" onClick={prevStep}>
-                  Back
-                </button>
-                <button type="button" onClick={nextStep}>
-                  Next
-                </button>
-              </div>
-            </>
-          )}
-
-          {currentStep === 3 && (
-            <>
-              <span>(3/3)</span>
+              <span>(2/2)</span>
               <fieldset>
                 <legend>Worker Skills:</legend>
                 <button
                   type="button"
-                  onClick={() => handleInterestClick("Plumbing")}
+                  onClick={() => handleSkillClick("Plumbing")}
                   className={
-                    formData.companyInterests.includes("Plumbing")
-                      ? "selected"
-                      : ""
+                    formData.skills.includes("Plumbing") ? "selected" : ""
                   }
                 >
                   Plumbing
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleInterestClick("Electrical")}
+                  onClick={() => handleSkillClick("Electrical")}
                   className={
-                    formData.companyInterests.includes("Electrical")
-                      ? "selected"
-                      : ""
+                    formData.skills.includes("Electrical") ? "selected" : ""
                   }
                 >
                   Electrical
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleInterestClick("Carpentry")}
+                  onClick={() => handleSkillClick("Carpentry")}
                   className={
-                    formData.companyInterests.includes("Carpentry")
-                      ? "selected"
-                      : ""
+                    formData.skills.includes("Carpentry") ? "selected" : ""
                   }
                 >
                   Carpentry
@@ -185,31 +134,25 @@ const Register = () => {
               <fieldset>
                 <button
                   type="button"
-                  onClick={() => handleInterestClick("Buildings")}
+                  onClick={() => handleSkillClick("Buildings")}
                   className={
-                    formData.companyInterests.includes("Buildings")
-                      ? "selected"
-                      : ""
+                    formData.skills.includes("Buildings") ? "selected" : ""
                   }
                 >
                   Buildings
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleInterestClick("IT")}
-                  className={
-                    formData.companyInterests.includes("IT") ? "selected" : ""
-                  }
+                  onClick={() => handleSkillClick("IT")}
+                  className={formData.skills.includes("IT") ? "selected" : ""}
                 >
                   IT
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleInterestClick("Cleaning")}
+                  onClick={() => handleSkillClick("Cleaning")}
                   className={
-                    formData.companyInterests.includes("Cleaning")
-                      ? "selected"
-                      : ""
+                    formData.skills.includes("Cleaning") ? "selected" : ""
                   }
                 >
                   Cleaning
@@ -226,7 +169,7 @@ const Register = () => {
           )}
 
           <p>
-            Have an account? <Link to="/login">Login</Link>
+            Have an account? <Link to="/worker-login">Login</Link>
           </p>
         </form>
       </div>
@@ -234,4 +177,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default WorkerRegister;

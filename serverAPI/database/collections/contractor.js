@@ -31,6 +31,10 @@ const contractorSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Job'
     }],
+    role: {
+        type: String,
+        default: 'contractor',
+    }
 });
 
 const Contractor = mongoose.model('Contractor', contractorSchema);

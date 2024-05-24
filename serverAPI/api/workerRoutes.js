@@ -56,7 +56,8 @@ router.post('/login', async (req, res) => {
             id: worker._id,
             name: worker.name,
             email: worker.email,
-            skills: worker.skills
+            skills: worker.skills,
+            role: worker.role,
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.cookie('token', token);
@@ -64,4 +65,43 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-});  
+});
+
+// Get worker dashboard
+router.get(':id/dashboard', async (req, res) => {
+    try {
+        const worker = await Worker.findById(req.params.id).populate('appliedJobs');
+        if (!worker) {
+            return res.status(404).json({ message: 'Worker not found' });
+        }
+        res.json(worker);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// get all workers
+router.get('/', async (req, res) => {
+    try {
+        const workers = await Worker.find();
+        res.json(workers);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+// get all jobs applied by a worker
+router.get('/worker/:workerId', async (req, res) => {
+    try {
+        const worker = await Worker.findById(req.params.workerId).populate('appliedJobs');
+        if (!worker) {
+            return res.status(404).json({ message: 'Worker not found' });
+        }
+        res.json(worker.appliedJobs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+module.exports = router;

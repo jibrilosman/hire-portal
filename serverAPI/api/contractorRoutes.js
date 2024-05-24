@@ -6,6 +6,7 @@ const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 
 
+
 // Register a new contractor
 router.post('/register', async (req, res) => {
     try {
@@ -64,6 +65,7 @@ router.post('/login', async (req, res) => {
             companyAddress: contractor.companyAddress,
             companyPhone: contractor.companyPhone,
             companyInterests: contractor.companyInterests,
+            role: contractor.role
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
         // Send token in cookie
@@ -136,7 +138,6 @@ router.delete('/jobs/:jobId', async (req, res) => {
 //         res.status(500).json({ message: error.message });
 //     }
 // });
-
 
 
 

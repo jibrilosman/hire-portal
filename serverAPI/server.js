@@ -8,6 +8,7 @@ require('./database/collections/worker');
 require('./database/collections/job');
 const contractorRoutes = require('./api/contractorRoutes');
 const jobRoutes = require('./api/jobRoutes');
+const workerRoutes = require('./api/workerRoutes');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/contractors', contractorRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/workers', workerRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
