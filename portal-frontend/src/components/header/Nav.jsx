@@ -62,10 +62,11 @@ const Nav = () => {
         ) : (
           ""
         )}
-        <NavLink to="/about">About</NavLink>
 
-        {role === "worker" && (
+        {role === "worker" ? (
           <NavLink to={`/job-dashboard/${id}`}>Job board</NavLink>
+        ) : (
+          <NavLink to={`/visit-dashboard`}>Job board</NavLink>
         )}
 
         {auth ? (

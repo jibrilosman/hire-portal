@@ -45,8 +45,15 @@ function App() {
           <Route path="completed" element={<Completed />} />
           <Route path="detail/:id" element={<JobDetail />} />
         </Route>
-          <Route path="worker/:id" element={<WorkerDashboard />} />
+          {/* <Route path="worker/:id" element={<WorkerDashboard />} /> */}
 
+          <Route path="visit-dashboard" element={<JobDashboard />} >
+          <Route index element={<AllJobs />} />
+          <Route path="ongoing" element={<Ongoing />} />
+          <Route path="upcoming" element={<Upcoming />} />
+          <Route path="completed" element={<Completed />} />
+          <Route path="detail/:id" element={<JobDetail />} />
+        </Route>
 
       </Route>
       </Routes>
