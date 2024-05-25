@@ -18,19 +18,19 @@ const DATABASE = process.env.MONGODB_URI;
 // Middleware
 app.use(express.json());
 app.use(cors(
-    {
-        origin: 'https://hire-portal-frontend.vercel.app/',
-        credentials: true,
-    }
+  {
+
+    // origin: 'http://localhost:3000',
+    origin: 'https://hire-portal-frontend.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  }
 ));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 // Connect to MongoDB
-mongoose.connect(DATABASE, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(DATABASE);
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
