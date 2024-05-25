@@ -18,29 +18,22 @@ const DATABASE = process.env.MONGODB_URI;
 // Middleware
 app.use(express.json());
 
-const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-frontend.vercel.app'];
 app.use(cors({
-  origin: function (origin, callback) {
-    // allow requests with no origin
-    // (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
+    origin: 'http://localhost:3000',
+    credentials: true,
 }));
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 // Connect to MongoDB
-mongoose.connect(DATABASE);
+mongoose.connect(DATABASE)
+  .then(() => console.log('Database connected successfully'))
+  .catch(err => console.error('Database connection error:', err));
 
 const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to database'));
+// db.on('error', (error) => console.error(error));
+// db.once('open', () => console.log('Connected to database'));
 
 // Routes
 app.get('/', (req, res) => {
