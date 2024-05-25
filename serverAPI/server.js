@@ -19,7 +19,7 @@ const DATABASE = process.env.MONGODB_URI;
 app.use(express.json());
 app.use(cors(
     {
-        origin: 'https://hire-portal-frontend.vercel.app',
+        'Access-Control-Allow-Origin':'https://hire-portal-frontend.vercel.app',
         credentials: true,
     }
 ));
