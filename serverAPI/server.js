@@ -17,12 +17,19 @@ const DATABASE = process.env.MONGODB_URI;
 
 // Middleware
 app.use(express.json());
-app.use(cors(
-    {
-        origin: 'https://hire-portal-frontend.vercel.app/',
-        credentials: true,
-    }
-));
+
+const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-frontend.vercel.app'];
+app.use(cors({
+    origin: function(origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true,
+}));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
