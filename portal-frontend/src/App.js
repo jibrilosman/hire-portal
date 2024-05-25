@@ -19,7 +19,7 @@ import JobDetail from "./pages/worker/JobDetail";
 import WorkerDashboard from "./pages/worker/WorkerDashboard";
 import VJobDashboard from "./pages/visitors/JobDashboard";
 
-axios.defaults.baseURL = "http://localhost:5000/api/";
+axios.defaults.baseURL = "https://hire-portal-server.vercel.app/api/";
 axios.defaults.withCredentials = true;
 
 function App() {
