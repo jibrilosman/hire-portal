@@ -18,30 +18,18 @@ const DATABASE = process.env.MONGODB_URI;
 // Middleware
 app.use(express.json());
 
-// const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-frontend.vercel.app'];
-// app.use(cors({
-//     origin: function(origin, callback) {
-//         if (!origin) return callback(null, true);
-//         if (allowedOrigins.indexOf(origin) === -1) {
-//             const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-//             return callback(new Error(msg), false);
-//         }
-//         return callback(null, true);
-//     },
-//     credentials: true,
-// }));
-
-app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-frontend.vercel.app'];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  next();
-});
-
+const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-frontend.vercel.app'];
+app.use(cors({
+    origin: function(origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true,
+}));
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
