@@ -20,6 +20,8 @@ app.use(express.json());
 app.use(cors(
     {
         'Access-Control-Allow-Origin':'https://hire-portal-frontend.vercel.app',
+        'access-control-allow-methods': 'GET, POST, PUT, DELETE',
+        'access-control-allow-credentials': true,
         credentials: true,
     }
 ));
