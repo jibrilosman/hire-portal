@@ -16,13 +16,24 @@ const PORT = process.env.PORT || 5000;
 const DATABASE = process.env.MONGODB_URI;
 
 // Middleware
-app.use(express.json());
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://hire-portal-iota.vercel.app'
+];
 
 app.use(cors({
-    Origin: "http://localhost:3000",
-    credentials: true,
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
 }));
 
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
