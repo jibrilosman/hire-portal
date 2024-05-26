@@ -26,7 +26,7 @@ const WorkerLogin = () => {
       const { data } = await axios.post("workers/login", { email, password });
       // const { token } = data;
       // localStorage.setItem("token", token);
-      setData(data)
+      setData({})
       navigate(`/job-dashboard/${data.id}`);
     } catch (errors) {
         console.log(errors);
