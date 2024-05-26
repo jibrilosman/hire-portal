@@ -20,6 +20,7 @@ app.use(express.json());
 
 const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-iota.vercel.app'];
 app.use(cors({
+    "Access-Control-Allow-Origin": "*",
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
