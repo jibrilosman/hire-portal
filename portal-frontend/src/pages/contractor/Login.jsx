@@ -29,7 +29,7 @@ const Login = () => {
       });
       // const { token } = data;
       // localStorage.setItem("token", token);
-      setData(data)
+      setData({});
       navigate(`/dashboard/${data.id}`);
     } catch (errors) {
       console.error(errors);
