@@ -21,7 +21,7 @@ const Nav = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
-      console.log(token);
+    
       try {
         const { data } = await axios.get("contractors/profile", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
