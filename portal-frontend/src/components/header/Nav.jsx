@@ -18,22 +18,22 @@ const Nav = () => {
     setShowMenu(!showMenu);
   };
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     const token = localStorage.getItem("token");
-  //     console.log(token);
-  //     try {
-  //       const { data } = await axios.get("contractors/profile", {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       });
-  //       setUserName(data.name);
-  //       setRole(data.role); //[2]
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, []);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      try {
+        const { data } = await axios.get("contractors/profile", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+        setUserName(data.name);
+        setRole(data.role); //[2]
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   const handleLogout = async () => {
     try {
