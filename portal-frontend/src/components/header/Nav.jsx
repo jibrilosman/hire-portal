@@ -23,7 +23,7 @@ const Nav = () => {
       const token = localStorage.getItem("token");
     
       try {
-        const { data } = await axios.get("https://hire-portal-ypuf.onrender.com/api/contractors/profile", {
+        const { data } = await axios.get("/profile", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setUserName(data.name);
