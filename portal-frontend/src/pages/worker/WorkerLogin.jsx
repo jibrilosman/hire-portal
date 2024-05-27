@@ -26,6 +26,8 @@ const WorkerLogin = () => {
       const { data } = await axios.post('workers/login', { email, password }, {
       withCredentials: true // if your server requires cookies or HTTP authentication
     });
+      const { token } = data;
+      localStorage.setItem("token", token);
       setData(data);
       navigate(`/job-dashboard/${data.id}`);
     } catch (errors) {
