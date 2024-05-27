@@ -19,7 +19,7 @@ const WorkerLogin = () => {
     });
   };
 
-  const handleUserLogin = async (e) => {
+ const handleUserLogin = async (e) => {
     e.preventDefault();
     const { email, password } = data;
     try {
@@ -28,11 +28,12 @@ const WorkerLogin = () => {
     });
       const { token } = data;
       localStorage.setItem("token", token);
-      setData(data);
+    setData()
+    console.log(data)
       navigate(`/job-dashboard/${data.id}`);
     } catch (errors) {
-        console.error(errors);
-      setErrors(errors.response.data);
+        console.log(errors);
+        setErrors(errors.response.data);
     }
   };
 
