@@ -17,10 +17,16 @@ const DATABASE = process.env.MONGODB_URI;
 
 // Middleware
 
-app.use(cors({
-    origin: 'https://hire-portal-iota.vercel.app',
-    credentials: true,
-}));
+// Configure CORS for development and production
+const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-iota.vercel.app'];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  optionsSuccessStatus: 200, // Important to send 200 for preflight requests
+}
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
