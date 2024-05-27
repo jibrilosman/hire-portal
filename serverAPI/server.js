@@ -17,12 +17,7 @@ const DATABASE = process.env.MONGODB_URI;
 
 // Middleware
 
-app.use(cors({
-    Origin: "https://hire-portal-iota.vercel.app",
-    "Access-Control-Allow-Origin": "https://hire-portal-iota.vercel.app",
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
