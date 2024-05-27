@@ -17,13 +17,23 @@ const DATABASE = process.env.MONGODB_URI;
 
 // Middleware
 
-// Configure CORS for development and production
-const allowedOrigins = ['http://localhost:3000', 'https://hire-portal-iota.vercel.app'];
+const allowedOrigins = [
+  'http://localhost:3000',       // Local development
+  'https://hire-portal-iota.vercel.app' // Production frontend
+];
 
 const corsOptions = {
-  origin: allowedOrigins,
-  optionsSuccessStatus: 200, // Important to send 200 for preflight requests
-}
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  optionsSuccessStatus: 200,
+  credentials: true // if you need to handle cookies
+};
+
 app.use(cors(corsOptions));
 
 app.options('*', cors(corsOptions));
