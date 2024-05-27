@@ -23,9 +23,9 @@ const WorkerLogin = () => {
     e.preventDefault();
     const { email, password } = data;
     try {
-      const { data } = await axios.post("workers/login", { email, password });
-      // const { token } = data;
-      // localStorage.setItem("token", token);
+      const { data } = await axios.post('https://hire-portal-ypuf.onrender.com/api/contractors/profile', { email, password }, {
+      withCredentials: true // if your server requires cookies or HTTP authentication
+    });
       setData({});
       navigate(`/job-dashboard/${data.id}`);
     } catch (error) {
