@@ -28,8 +28,9 @@ const WorkerLogin = () => {
     });
       setData({});
       navigate(`/job-dashboard/${data.id}`);
-    } catch (error) {
-        console.error(error);
+    } catch (errors) {
+        console.error(errors);
+      setErrors(errors.response.data);
     }
   };
 
