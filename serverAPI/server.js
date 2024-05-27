@@ -24,8 +24,9 @@ const corsOptions = {
   origin: allowedOrigins,
   optionsSuccessStatus: 200, // Important to send 200 for preflight requests
 }
-
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
