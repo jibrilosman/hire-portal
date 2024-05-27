@@ -30,7 +30,6 @@ const WorkerLogin = () => {
       navigate(`/job-dashboard/${data.id}`);
     } catch (error) {
         console.error(error);
-        setErrors(error.response.data);
     }
   };
 
