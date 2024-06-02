@@ -27,8 +27,9 @@ const Login = () => {
         email,
         password,
       });
-      const { token } = data;
-      localStorage.setItem("token", token);
+      // const { token } = data;
+      // localStorage.setItem("token", token);
+      setData({});
       navigate(`/dashboard/${data.id}`);
     } catch (errors) {
       console.error(errors);

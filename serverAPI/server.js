@@ -18,16 +18,34 @@ const DATABASE = process.env.MONGODB_URI;
 
 
 // Middleware
+
+const allowedOrigins = [
+  'http://localhost:3000',       // Local development
+  'https://hire-portal-iota.vercel.app' // Production frontend
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  optionsSuccessStatus: 200,
+  credentials: true // if you need to handle cookies
+};
+
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 
-
-  
-  app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true
-  }));
-  app.options("*", cors());
-
+app.use(cors({
+    origin: 'https://hire-portal-iota.vercel.app',
+    credentials: true,
+}));
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
