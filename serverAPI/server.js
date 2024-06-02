@@ -10,18 +10,24 @@ const contractorRoutes = require('./api/contractorRoutes');
 const jobRoutes = require('./api/jobRoutes');
 const workerRoutes = require('./api/workerRoutes');
 
+
 const app = express();
 
 const PORT = process.env.PORT || 5000;
 const DATABASE = process.env.MONGODB_URI;
 
+
 // Middleware
 app.use(express.json());
 
-app.use(cors({
-    origin: 'https://hire-portal-iota.vercel.app',
-    credentials: true,
-}));
+
+  
+  app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+  }));
+  app.options("*", cors());
+
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

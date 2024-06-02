@@ -19,13 +19,30 @@ const WorkerLogin = () => {
     });
   };
 
+  // const handleUserLogin = async (e) => {
+  //   e.preventDefault();
+  //   const { email, password } = data;
+  //   try {
+  //     const { data: responseData } = await axios.post('workers/login', { email, password });
+  //     const { token } = responseData;
+  //     localStorage.setItem('token', token);
+      
+  //   } catch (error) {
+  //     setErrors(error.response.data);
+  //   }
+  // };
+
   const handleUserLogin = async (e) => {
     e.preventDefault();
     const { email, password } = data;
     try {
-      const { data } = await axios.post("workers/login", { email, password });
+      const { data } = await axios.post('workers/login', { email, password }, {
+      withCredentials: true // if your server requires cookies or HTTP authentication
+    });
       const { token } = data;
       localStorage.setItem("token", token);
+    setData()
+    console.log(data)
       navigate(`/job-dashboard/${data.id}`);
     } catch (errors) {
         console.log(errors);
@@ -60,7 +77,7 @@ const WorkerLogin = () => {
             onChange={handleChange}
             placeholder="Password"
           />
-          {errors.message && <small className="error">{errors.message}</small>}
+
           <button type="submit">Login</button>
           <p>
             Don't have an account? <Link to="/register">Sign Up</Link>

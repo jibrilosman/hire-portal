@@ -5,6 +5,8 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({ children })  {
     const [user, setUser] = useState(null);
+    const role = localStorage.getItem('role');
+
     useEffect(() => {
         if(!user) {
             axios.get('contractors/profile').then(({data}) => {

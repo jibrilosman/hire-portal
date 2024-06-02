@@ -40,11 +40,13 @@ const JobDetail = () => {
     fetchUserData();
   }, []);
 
+  
+
   // Onclick function to apply for a job
   const applyToJob = async () => {
     try {
-      const response = await axios.post(`/jobs/${id}/apply`, {
-        workerId: workerId, // Include worker ID in the request body
+      const response = await axios.post(`jobs/${id}/apply`, {
+        workerId: workerId, 
       });
       console.log(response.data);
       alert("Applied successfully");

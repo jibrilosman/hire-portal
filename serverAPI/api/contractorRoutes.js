@@ -129,15 +129,6 @@ router.delete('/jobs/:jobId', async (req, res) => {
     }
 });
 
-// get all jobs
-// router.get('/jobs', async (req, res) => {
-//     try {
-//         const jobs = await Job.find();
-//         res.json(jobs);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// });
 
 // get all contractors
 router.get('/', async (req, res) => {
