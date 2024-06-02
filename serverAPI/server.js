@@ -21,12 +21,8 @@ const DATABASE = process.env.MONGODB_URI;
 
 app.use(express.json());
 
-app.use(express.json());
 
-app.use(cors({
-    origin: 'https://hire-portal-iota.vercel.app',
-    credentials: true,
-}));
+app.use(cors())
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
