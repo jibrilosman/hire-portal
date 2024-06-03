@@ -23,7 +23,8 @@ app.use(express.json());
 
 
 app.use(cors({
-  origin: '*'
+  origin: 'https://hire-portal-iota.vercel.app/',
+  credentials: true
 }))
 
 app.use(cookieParser());
