@@ -21,7 +21,7 @@ const DATABASE = process.env.MONGODB_URI;
 
 app.use(express.json());
 
-const whitelist = ['https://hire-portal-git-main-jibrilosmans-projects.vercel.app', 'https://hire-portal-iota.vercel.app', 'http://localhost:3000'];
+const whitelist = ['https://hire-portal-git-main-jibrilosmans-projects.vercel.app', 'https://hire-portal-iota.vercel.app'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
