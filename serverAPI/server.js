@@ -23,8 +23,7 @@ app.use(express.json());
 
 const corsOptions = {
   origin: ['https://hire-portal-git-main-jibrilosmans-projects.vercel.app', 
-           'https://hire-portal-iota.vercel.app/', 
-           'http://localhost:3000'
+           'https://hire-portal-iota.vercel.app/' 
           ],
   optionsSuccessStatus: 200
 };
