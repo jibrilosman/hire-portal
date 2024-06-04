@@ -21,14 +21,20 @@ const DATABASE = process.env.MONGODB_URI;
 
 app.use(express.json());
 
+const whitelist = ['https://hire-portal-git-main-jibrilosmans-projects.vercel.app', 'https://hire-portal-iota.vercel.app', 'http://localhost:3000'];
 const corsOptions = {
-  origin: ['https://hire-portal-git-main-jibrilosmans-projects.vercel.app', 
-           'https://hire-portal-iota.vercel.app/' 
-          ],
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
+
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
