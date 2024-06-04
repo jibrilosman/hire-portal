@@ -5,7 +5,7 @@ const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 
 // Register a new worker
-router.post('/register', async (req, res) => {
+router.post('https://hire-portal-ypuf.onrender.com/api/workers/register', async (req, res) => {
     try {
         const { name, email, password, skills } = req.body;
         if (!name || !email || !password || !skills) {
@@ -37,7 +37,7 @@ router.post('/register', async (req, res) => {
 });
 
 // Login a worker
-router.post('/login', async (req, res) => {
+router.post('https://hire-portal-ypuf.onrender.com/api/workers/login', async (req, res) => {
     const { email, password } = req.body;
     try {
         // Check if the worker exists
