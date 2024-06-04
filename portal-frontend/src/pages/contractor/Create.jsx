@@ -24,7 +24,7 @@ const Create = () => {
 
   useEffect(() => {
     axios
-      .get(`contractors/${id}/dashboard`)
+      .get(`https://hire-portal-ypuf.onrender.com/api/contractors/${id}/dashboard`)
       .then((response) => {
         setContractor(response.data);
         setFormData({
@@ -49,7 +49,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`contractors/${id}/jobs`, formData);
+      await axios.post(`https://hire-portal-ypuf.onrender.com/api/contractors/${id}/jobs`, formData);
       alert("Job created successfully");
       setModalIsOpen(false);
     } catch (error) {
@@ -62,7 +62,7 @@ const Create = () => {
   const handleDelete = async (id) => {
     window.confirm("Are you sure you want to delete this job?");
     try {
-      await axios.delete(`contractors/jobs/${id}`);
+      await axios.delete(`https://hire-portal-ypuf.onrender.com/api/contractors/jobs/${id}`);
       setJobs(jobs.filter((job) => job._id !== id));
       alert("Job deleted successfully");
       navigate(".");

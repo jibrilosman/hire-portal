@@ -72,7 +72,7 @@ const WorkerRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("workers/register", formData);
+      await axios.post("https://hire-portal-ypuf.onrender.com/api/workers/register", formData);
       alert("Account created successfully");
       navigate("/login");
     } catch (errors) {

@@ -23,7 +23,7 @@ app.use(express.json());
 
 
 app.use(cors({
-  origin: 'https://hire-portal-iota.vercel.app/',
+  origin: 'http://localhost:3000',
   credentials: true
 }))
 

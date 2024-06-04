@@ -11,7 +11,7 @@ const Ongoing = () => {
   const getOngoingJobs = async () => {
     // Fetch all jobs from ./jobs if current date is greater than or equal to startDate and less than or equal to endDate
     try {
-      const { data } = await axios.get("/jobs");
+      const { data } = await axios.get("https://hire-portal-ypuf.onrender.com/api/jobs");
       if (data) {
         const ongoingJobs = data.filter((job) => {
           const startDate = new Date(job.startDate);

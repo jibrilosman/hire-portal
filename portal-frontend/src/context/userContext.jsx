@@ -9,7 +9,7 @@ export function UserContextProvider({ children })  {
 
     useEffect(() => {
         if(!user) {
-            axios.get('contractors/profile').then(({data}) => {
+            axios.get('https://hire-portal-ypuf.onrender.com/api/contractors/profile').then(({data}) => {
                 setUser(data);
             })
         }

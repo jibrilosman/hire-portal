@@ -8,7 +8,7 @@ const Upcoming = () => {
   const getUpcomingJobs = async () => {
     // Fetch all jobs from ./jobs if current date is less than startDate
     try {
-      const { data } = await axios.get("/jobs");
+      const { data } = await axios.get("https://hire-portal-ypuf.onrender.com/api/jobs");
       if (data) {
         const upcomingJobs = data.filter((job) => {
           const startDate = new Date(job.startDate);

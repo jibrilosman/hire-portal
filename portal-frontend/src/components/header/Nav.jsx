@@ -38,7 +38,7 @@ const Nav = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "contractors/logout",
+        "https://hire-portal-ypuf.onrender.com/api/contractors/logout",
         {},
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = data;
     try {
-      const { data } = await axios.post("contractors/login", {
+      const { data } = await axios.post("https://hire-portal-ypuf.onrender.com/api/contractors/login", {
         email,
         password,
       });
