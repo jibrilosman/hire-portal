@@ -13,7 +13,7 @@ const JobDetail = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`https://hire-portal-ypuf.onrender.com/api/jobs/${id}`);
+        const response = await axios.get(`/jobs/${id}`);
         setJob(response.data);
       } catch (error) {
         console.log(error);
@@ -27,7 +27,7 @@ const JobDetail = () => {
       const token = localStorage.getItem("token");
       console.log(token);
       try {
-        const { data } = await axios.get("https://hire-portal-ypuf.onrender.com/api/contractors/profile", {
+        const { data } = await axios.get("contractors/profile", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setUser(data.name);
@@ -45,7 +45,7 @@ const JobDetail = () => {
   // Onclick function to apply for a job
   const applyToJob = async () => {
     try {
-      const response = await axios.post(`https://hire-portal-ypuf.onrender.com/api/jobs/${id}/apply`, {
+      const response = await axios.post(`jobs/${id}/apply`, {
         workerId: workerId, 
       });
       console.log(response.data);

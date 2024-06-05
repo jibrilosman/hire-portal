@@ -10,7 +10,7 @@ const AllJobs = () => {
   const navigate = useNavigate();
   const getAllJobs = async () => {
     try {
-      const { data } = await axios.get("https://hire-portal-ypuf.onrender.com/api/jobs");
+      const { data } = await axios.get("jobs");
       setAllJobs(data);
     } catch (error) {
       console.error(error);

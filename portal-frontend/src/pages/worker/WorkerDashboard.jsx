@@ -11,7 +11,7 @@ const WorkerDashboard = () => {
     const fetchWorker = async () => {
       const token = localStorage.getItem("token");
       try {
-        const { data } = await axios.get(`https://hire-portal-ypuf.onrender.com/api/workers`, {
+        const { data } = await axios.get(`/workers`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setWorker(data);

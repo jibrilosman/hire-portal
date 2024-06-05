@@ -7,7 +7,7 @@ const Completed = () => {
   const getCompletedJobs = async () => {
     // Fetch all jobs from ./jobs if current date is greater than endDate
     try {
-      const { data } = await axios.get("https://hire-portal-ypuf.onrender.com/api/jobs");
+      const { data } = await axios.get("jobs");
       if (data) {
         const completedJobs = data.filter((job) => {
           const endDate = new Date(job.endDate);

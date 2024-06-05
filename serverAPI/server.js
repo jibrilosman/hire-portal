@@ -11,6 +11,7 @@ const jobRoutes = require('./api/jobRoutes');
 const workerRoutes = require('./api/workerRoutes');
 
 
+
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -18,22 +19,13 @@ const DATABASE = process.env.MONGODB_URI;
 
 
 // Middleware
-
+app.use(cors({
+    origin: 'https://hire-portal-iota.vercel.app',
+    credentials: true
+}));
 app.use(express.json());
 
-const whitelist = ['https://hire-portal-git-main-jibrilosmans-projects.vercel.app', 'https://hire-portal-iota.vercel.app'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
+  
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

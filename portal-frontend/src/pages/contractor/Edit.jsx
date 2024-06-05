@@ -22,7 +22,7 @@ const Edit = () => {
 
   const fetchJob = async () => {
     try {
-      const response = await axios.get(`https://hire-portal-ypuf.onrender.com/api/jobs/${id}`);
+      const response = await axios.get(`/jobs/${id}`);
       setValues({
         title: response.data.title,
         description: response.data.description,
@@ -45,7 +45,7 @@ const Edit = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://hire-portal-ypuf.onrender.com/api/contractors/jobs/${id}`, values);
+      await axios.put(`/contractors/jobs/${id}`, values);
 
       alert("Job updated successfully");
       navigate("..");
