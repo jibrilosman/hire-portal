@@ -23,18 +23,21 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = data;
     try {
-      const { data } = await axios.post("/contractors/login", {
+      await axios.post("/contractors/login", {
         email,
         password,
-      });
-      // const { token } = data;
-      // localStorage.setItem("token", token);
-      setData({});
-      navigate(`/dashboard/${data.id}`);
-    } catch (errors) {
-      console.error(errors);
-      setErrors(errors.response.data);
+      }, { withCredentials: true })
+      .then(response => {
+        setData(response.data);
+        navigate("/contractors/dashboard");
+      }
+      )
     }
+    catch (error) {
+      if (error.response) {
+        setErrors(error.response.data);
+      }
+    }  
   };
 
   return (
