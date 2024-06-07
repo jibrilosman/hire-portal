@@ -7,13 +7,25 @@ export function UserContextProvider({ children })  {
     const [user, setUser] = useState(null);
     const role = localStorage.getItem('role');
 
-    useEffect(() => {
-        if(!user) {
-            axios.get('contractors/profile').then(({data}) => {
-                setUser(data);
-            })
-        }
+    // useEffect(() => {
+    //     if(!user) {
+    //         axios.get('contractors/profile').then(({data}) => {
+    //             setUser(data);
+    //         })
+    //     }
         
+    // }, [user]);
+
+    useEffect(() => {
+        if (!user) {
+            axios.get('/contractors/profile', { withCredentials: true })
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
     }, [user]);
 
 
