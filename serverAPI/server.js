@@ -21,7 +21,9 @@ const DATABASE = process.env.MONGODB_URI;
 // Middleware
 app.use(cors({
     origin: process.env.CLIENT_URL,
+    'access-control-allow-origin': process.env.CLIENT_URL,
     credentials: true,
+    'access-control-allow-credentials': true,
 }));
 app.use(express.json());
 
