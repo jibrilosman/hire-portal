@@ -19,12 +19,19 @@ const DATABASE = process.env.MONGODB_URI;
 
 
 // Middleware
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    'access-control-allow-origin': process.env.CLIENT_URL,
+const corsOptions = {
+    origin: 'https://hire-portal-iota.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
-    'access-control-allow-credentials': true,
-}));
+    allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
+// Enable preflight requests for all routes
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
   
